@@ -1,0 +1,26 @@
+Termek [Tkod PK, Nev, Ar, Leiras]
+Vasarlas [Kod FK, ]
+
+Create table Kategoria(Kkod char (3) primary key, Nev varchar(20));
+
+insert into Kategoria values('k01', 'Kaja');
+insert into Kategoria values('k02', 'Pia');
+insert into Kategoria values('k03', 'Ruha');
+
+Create table Termek(Tkod char(3) primary key, Nev varchar(20) , Ar Int, Leiras varchar(20), Kategoria char(3) not null, Foreign key (Kategoria) references Kategoria(KKod));
+
+insert into Termek values('t01', 'sör', 200, 'világos', 'k02');
+insert into Termek values('t02', 'bor', 200, 'vörös', 'k02');
+insert into Termek values('t03', 'zsömle', 20, 'kerek', 'k01');
+
+Create table Vasarlo (VID char(3) primary key, Nev varchar(30), Irsz int, Varos varchar(30), Cím varchar(30), Fizmod int);
+
+insert into Vasarlo values('v01', 'Kék Alma', '1111', 'Eger', 'Kék u.12',2);
+insert into Vasarlo values('v02', 'Fekete Péter', '2222', 'Miskolc', 'Hó u.72',3);
+insert into Vasarlo values('v03', 'Feke Farkas', '3333', 'Budapest', 'Kő u.25',1);
+
+Create Table Vasarlas (Kod CHAR(3), Datum Varchar(30), Darab INT, Azon CHAR(3), FOREIGN KEY (Kod) REFERENCES Termek(Tkod), FOREIGN KEY (Azon) REFERENCES Vasarlo(VID));
+
+insert into Vasarlas (Kod, Datum, Darab, Azon) values('t01', '2026-04-10', 2, 'v01');
+insert into Vasarlas (Kod, Datum, Darab, Azon) values('t02','2026-03-10', 2, 'v02');
+insert into Vasarlas (Kod, Datum, Darab, Azon) values('t03', '2026-02-10', 3, 'v03');
